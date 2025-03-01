@@ -1,0 +1,95 @@
+#!/bin/bash
+
+source .venv/bin/activate
+
+INPUT_DATA_CONTRACTS=(
+  "urn:datacontract:project:jaffle-shop:dbt-seed:raw-model:supplies"
+  "urn:datacontract:project:jaffle-shop:dbt-seed:raw-model:stores"
+  "urn:datacontract:project:jaffle-shop:dbt-seed:raw-model:products"
+  "urn:datacontract:project:jaffle-shop:dbt-seed:raw-model:orders"
+  "urn:datacontract:project:jaffle-shop:dbt-seed:raw-model:customers"
+  "urn:datacontract:project:jaffle-shop:dbt-seed:raw-model:items"
+)
+
+for d in ${INPUT_DATA_CONTRACTS[@]}; do
+  contract_name=$(echo $d | grep -Po '(?<=:)[a-zA-Z0-9_-]+' | tail -n 2 | paste -sd - -)
+
+  curl -s -X 'GET' \
+    "${DATACONTRACT_MANAGER_HOST}/api/datacontracts/${d}" \
+    --header "x-api-key: ${DATACONTRACT_MANAGER_API_KEY}" \
+    --header "content-type: application/json" > \
+    metadata/input/data_contracts/${contract_name}.json
+
+  cat metadata/input/data_contracts/${contract_name}.json | yq --yaml-output > \
+    metadata/input/data_contracts/${contract_name}.yaml
+  
+  datacontract export \
+    metadata/input/data_contracts/${contract_name}.yaml \
+    --format dbt-sources \
+    --output dbt/models/sources/${contract_name}.yaml
+
+  # Anti-Agnostic Pattern to hardcode/ convert Data Types to conform with
+  # desired Warehouse against `dbt build`. Jinja macros are available,
+  # but not yet supported inside YAML Contracts.
+  # example: {{ dbt.type_timestamp() }}
+  #
+  # TODO: 
+  # - [dbt] Support Jinja Macros in YAML Contracts
+  # - [datacontract-cli] dbt-source export to utilize Jinja Macros
+  yq -r -i --yaml-roundtrip '.sources[0] += {"schema": "{{target.schema}}_raw"}' \
+    dbt/models/sources/${contract_name}.yaml
+  yq -r -i --yaml-roundtrip \
+    --arg timestamp '{{"TIMESTAMP_NTZ" if target.type == "snowflake" else "TIMESTAMP"}}' \
+    --arg number '{{"NUMBER" if target.type == "snowflake" else "INT"}}' \
+    --arg int '{{"INT" if target.type == "snowflake" else "INT"}}' \
+    --arg float '{{"FLOAT" if target.type == "snowflake" else "FLOAT"}}' \
+    --arg bigint '{{"BIGINT" if target.type == "snowflake" else "INT"}}' \
+    --arg string '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}' \
+    --arg boolean '{{"BOOLEAN" if target.type == "snowflake" else "BOOLEAN"}}' \
+    'walk( 
+      if type == "object" and has("data_type") then
+        if .data_type == "TIMESTAMP_TZ" then .data_type = $timestamp
+        elif .data_type == "NUMBER" then .data_type = $number
+        elif .data_type == "INT" then .data_type = $int
+        elif .data_type == "FLOAT" then .data_type = $float
+        elif .data_type == "BIGINT" then .data_type = $bigint
+        elif .data_type == "STRING" then ( .data_type = $string | .char_size = 250 )
+        elif .data_type == "BOOLEAN" then .data_type = $boolean
+        else . end
+      else . end )' dbt/models/sources/${contract_name}.yaml
+
+  model_name=$(cat metadata/input/data_contracts/${contract_name}.json | jq -r '.models | keys[0]')
+  datacontract export \
+    metadata/input/data_contracts/${contract_name}.yaml \
+    --format dbt-staging-sql \
+    --model ${model_name} \
+    --output dbt/models/metadata_staging/${model_name}.sql
+  
+  datacontract export \
+    metadata/input/data_contracts/${contract_name}.yaml \
+    --format dbt \
+    --model ${model_name} \
+    --output dbt/models/metadata_staging/${model_name}.yaml
+  
+  yq -r -i --yaml-roundtrip \
+    --arg timestamp '{{"TIMESTAMP_NTZ" if target.type == "snowflake" else "TIMESTAMP"}}' \
+    --arg number '{{"NUMBER" if target.type == "snowflake" else "BIGINT"}}' \
+    --arg int '{{"INT" if target.type == "snowflake" else "INT"}}' \
+    --arg float '{{"FLOAT" if target.type == "snowflake" else "DOUBLE"}}' \
+    --arg bigint '{{"BIGINT" if target.type == "snowflake" else "INT"}}' \
+    --arg string '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}' \
+    --arg boolean '{{"BOOLEAN" if target.type == "snowflake" else "BOOLEAN"}}' \
+    'walk( 
+      if type == "object" and has("data_type") then
+        if .data_type == "TIMESTAMP_TZ" then .data_type = $timestamp
+        elif .data_type == "NUMBER" then .data_type = $number
+        elif .data_type == "INT" then .data_type = $int
+        elif .data_type == "FLOAT" then .data_type = $float
+        elif .data_type == "BIGINT" then .data_type = $bigint
+        elif .data_type == "STRING" then ( .data_type = $string | .char_size = 250 )
+        elif .data_type == "BOOLEAN" then .data_type = $boolean
+        else . end
+      else . end )' dbt/models/metadata_staging/${model_name}.yaml
+done
+
+deactivate

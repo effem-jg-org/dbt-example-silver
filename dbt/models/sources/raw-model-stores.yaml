@@ -1,0 +1,37 @@
+version: 2
+sources:
+  - name: urn:datacontract:project:jaffle-shop:dbt-seed:raw-model:stores
+    meta:
+      owner: enabling-team
+    description: Data Contract for Example Jaffle Shop RAW Stores Data provided by
+      dbt/ created by dbt seed.
+    tables:
+      - name: raw_stores
+        description: Jaffle Shop Stores Data
+        columns:
+          - name: id
+            data_tests:
+              - relationships:
+                  to: source("urn:datacontract:project:jaffle-shop:dbt-seed:raw-model:stores",
+                    "raw_orders")
+                  field: store_id
+            data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
+            description: Unique identifier for supplies.
+            char_size: 250
+          - name: name
+            data_tests:
+              - not_null
+            data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
+            description: Supply name.
+            char_size: 250
+          - name: opened_at
+            data_tests:
+              - not_null
+            data_type: TIMESTAMP_NTZ
+            description: City store opened at.
+          - name: tax_rate
+            data_tests:
+              - not_null
+            data_type: '{{"FLOAT" if target.type == "snowflake" else "FLOAT"}}'
+            description: City tax rate.
+    schema: '{{target.schema}}_raw'

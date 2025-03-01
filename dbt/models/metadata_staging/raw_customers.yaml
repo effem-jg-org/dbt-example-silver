@@ -1,0 +1,27 @@
+version: 2
+models:
+  - name: raw_customers
+    config:
+      meta:
+        data_contract: urn:datacontract:project:jaffle-shop:dbt-seed:raw-model:customers
+        owner: enabling-team
+      materialized: table
+      contract:
+        enforced: true
+    description: Jaffle Shop Customer Data
+    columns:
+      - name: id
+        data_tests:
+          - relationships:
+              to: source("urn:datacontract:project:jaffle-shop:dbt-seed:raw-model:customers",
+                "raw_orders")
+              field: customer
+        data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
+        description: Unique identifier for each customer.
+        char_size: 250
+      - name: name
+        data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
+        description: Customer name.
+        constraints:
+          - type: not_null
+        char_size: 250

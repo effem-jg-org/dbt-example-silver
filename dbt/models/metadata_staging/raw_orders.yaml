@@ -1,0 +1,42 @@
+version: 2
+models:
+  - name: raw_orders
+    config:
+      meta:
+        data_contract: urn:datacontract:project:jaffle-shop:dbt-seed:raw-model:orders
+        owner: enabling-team
+      materialized: table
+      contract:
+        enforced: true
+    description: Jaffle Shop Orders Data
+    columns:
+      - name: id
+        data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
+        description: Unique identifier for each order.
+        char_size: 250
+      - name: customer
+        data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
+        description: Order customer identifier.
+        constraints:
+          - type: not_null
+        char_size: 250
+      - name: ordered_at
+        data_type: TIMESTAMP_NTZ
+        description: Order timestamp.
+        constraints:
+          - type: not_null
+      - name: store_id
+        data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
+        description: Jaffle store identifier.
+        constraints:
+          - type: not_null
+        char_size: 250
+      - name: subtotal
+        data_type: '{{"NUMBER" if target.type == "snowflake" else "BIGINT"}}'
+        description: Cost of Jaffle order.
+      - name: tax_paid
+        data_type: '{{"NUMBER" if target.type == "snowflake" else "BIGINT"}}'
+        description: Tax on order.
+      - name: order_total
+        data_type: '{{"NUMBER" if target.type == "snowflake" else "BIGINT"}}'
+        description: Total cost of order.

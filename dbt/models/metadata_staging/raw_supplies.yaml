@@ -1,0 +1,38 @@
+version: 2
+models:
+  - name: raw_supplies
+    config:
+      meta:
+        data_contract: urn:datacontract:project:jaffle-shop:dbt-seed:raw-model:supplies
+        owner: enabling-team
+      materialized: table
+      contract:
+        enforced: true
+    description: Jaffle Shop Supplies Data
+    columns:
+      - name: id
+        data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
+        description: Unique identifier for supplies.
+        char_size: 250
+      - name: name
+        data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
+        description: Supply name.
+        constraints:
+          - type: not_null
+        char_size: 250
+      - name: cost
+        data_type: '{{"NUMBER" if target.type == "snowflake" else "BIGINT"}}'
+        description: Supply item cost.
+        constraints:
+          - type: not_null
+      - name: perishable
+        data_type: '{{"BOOLEAN" if target.type == "snowflake" else "BOOLEAN"}}'
+        description: Indication for perishable status.
+        constraints:
+          - type: not_null
+      - name: sku
+        data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
+        description: Product sku name.
+        constraints:
+          - type: not_null
+        char_size: 250

@@ -1,0 +1,233 @@
+dataProductSpecification: 0.0.1
+id: urn:dataproduct:project:jaffle-shop:dbt:jaffle-shop-transformations
+info:
+  title: dbt Jaffle Shop Process
+  description: Example Jaffle Shop PROCESS Data provided by dbt/ created by dbt seed.
+  owner: enabling-team
+  status: development
+  archetype: consumer-aligned
+  maturity: managed
+outputPorts:
+  - id: urn:datacontract:project:jaffle-shop:dbt:process-model:customers-databricks
+    name: Jaffle Shop PROCESS Customers Data Contract
+    description: Data Contract for Example Jaffle Shop PROCESS Customers Data provided
+      by dbt/ created by dbt build.
+    dataContractId: urn:datacontract:project:jaffle-shop:dbt:process-model:customers
+    autoApprove: false
+    containsPii: false
+    type: databricks
+    server:
+      host: adb-4057509338801929.9.azuredatabricks.net
+      catalog: datagovernance_mvp
+      schema: jaffle_shop
+  - id: urn:datacontract:project:jaffle-shop:dbt:process-model:order_items-databricks
+    name: Jaffle Shop PROCESS Order Items Data Contract
+    description: Data Contract for Example Jaffle Shop PROCESS Order Items Data provided
+      by dbt/ created by dbt build.
+    dataContractId: urn:datacontract:project:jaffle-shop:dbt:process-model:order_items
+    autoApprove: false
+    containsPii: false
+    type: databricks
+    server:
+      host: adb-4057509338801929.9.azuredatabricks.net
+      catalog: datagovernance_mvp
+      schema: jaffle_shop
+  - id: urn:datacontract:project:jaffle-shop:dbt:process-model:orders-databricks
+    name: Jaffle Shop PROCESS Orders Data Contract
+    description: Data Contract for Example Jaffle Shop PROCESS Orders Data provided
+      by dbt/ created by dbt build.
+    dataContractId: urn:datacontract:project:jaffle-shop:dbt:process-model:orders
+    autoApprove: false
+    containsPii: false
+    type: databricks
+    server:
+      host: adb-4057509338801929.9.azuredatabricks.net
+      catalog: datagovernance_mvp
+      schema: jaffle_shop
+  - id: urn:datacontract:project:jaffle-shop:dbt:stage-model:customers-databricks
+    name: Jaffle Shop STAGE Customers Data Contract
+    description: Data Contract for Example Jaffle Shop STAGE Customers Data provided
+      by dbt/ created by dbt seed.
+    dataContractId: urn:datacontract:project:jaffle-shop:dbt:stage-model:customers
+    autoApprove: false
+    containsPii: false
+    type: databricks
+    server:
+      host: adb-4057509338801929.9.azuredatabricks.net
+      catalog: datagovernance_mvp
+      schema: jaffle_shop
+  - id: urn:datacontract:project:jaffle-shop:dbt:stage-model:locations-databricks
+    name: Jaffle Shop STAGE Locations Data Contract
+    description: Data Contract for Example Jaffle Shop STAGE Locations Data provided
+      by dbt/ created by dbt seed.
+    dataContractId: urn:datacontract:project:jaffle-shop:dbt:stage-model:locations
+    autoApprove: false
+    containsPii: false
+    type: databricks
+    server:
+      host: adb-4057509338801929.9.azuredatabricks.net
+      catalog: datagovernance_mvp
+      schema: jaffle_shop
+  - id: urn:datacontract:project:jaffle-shop:dbt:stage-model:order_items-databricks
+    name: Jaffle Shop STAGE Order Items Data Contract
+    description: Data Contract for Example Jaffle Shop STAGE Order Items Data provided
+      by dbt/ created by dbt seed.
+    dataContractId: urn:datacontract:project:jaffle-shop:dbt:stage-model:order_items
+    autoApprove: false
+    containsPii: false
+    type: databricks
+    server:
+      host: adb-4057509338801929.9.azuredatabricks.net
+      catalog: datagovernance_mvp
+      schema: jaffle_shop
+  - id: urn:datacontract:project:jaffle-shop:dbt:stage-model:orders-databricks
+    name: Jaffle Shop STAGE Orders Data Contract
+    description: Data Contract for Example Jaffle Shop STAGE Orders Data provided
+      by dbt/ created by dbt seed.
+    dataContractId: urn:datacontract:project:jaffle-shop:dbt:stage-model:orders
+    autoApprove: false
+    containsPii: false
+    type: databricks
+    server:
+      host: adb-4057509338801929.9.azuredatabricks.net
+      catalog: datagovernance_mvp
+      schema: jaffle_shop
+  - id: urn:datacontract:project:jaffle-shop:dbt:stage-model:products-databricks
+    name: Jaffle Shop STAGE Products Data Contract
+    description: Data Contract for Example Jaffle Shop STAGE Products Data provided
+      by dbt/ created by dbt seed.
+    dataContractId: urn:datacontract:project:jaffle-shop:dbt:stage-model:products
+    autoApprove: false
+    containsPii: false
+    type: databricks
+    server:
+      host: adb-4057509338801929.9.azuredatabricks.net
+      catalog: datagovernance_mvp
+      schema: jaffle_shop
+  - id: urn:datacontract:project:jaffle-shop:dbt:stage-model:suppliers-databricks
+    name: Jaffle Shop STAGE Suppliers Data Contract
+    description: Data Contract for Example Jaffle Shop STAGE Suppliers Data provided
+      by dbt/ created by dbt seed.
+    dataContractId: urn:datacontract:project:jaffle-shop:dbt:stage-model:suppliers
+    autoApprove: false
+    containsPii: false
+    type: databricks
+    server:
+      host: adb-4057509338801929.9.azuredatabricks.net
+      catalog: datagovernance_mvp
+      schema: jaffle_shop
+  - id: urn:datacontract:project:jaffle-shop:dbt:process-model:customers-snowflake
+    name: Jaffle Shop PROCESS Customers Data Contract
+    description: Data Contract for Example Jaffle Shop PROCESS Customers Data provided
+      by dbt/ created by dbt build.
+    dataContractId: urn:datacontract:project:jaffle-shop:dbt:process-model:customers
+    autoApprove: false
+    containsPii: false
+    type: snowflake
+    server:
+      account: MARS-TEST_EASTUS2
+      database: datagovernance_mvp
+      schema: jaffle_shop
+  - id: urn:datacontract:project:jaffle-shop:dbt:process-model:order_items-snowflake
+    name: Jaffle Shop PROCESS Order Items Data Contract
+    description: Data Contract for Example Jaffle Shop PROCESS Order Items Data provided
+      by dbt/ created by dbt build.
+    dataContractId: urn:datacontract:project:jaffle-shop:dbt:process-model:order_items
+    autoApprove: false
+    containsPii: false
+    type: snowflake
+    server:
+      account: MARS-TEST_EASTUS2
+      database: datagovernance_mvp
+      schema: jaffle_shop
+  - id: urn:datacontract:project:jaffle-shop:dbt:process-model:orders-snowflake
+    name: Jaffle Shop PROCESS Orders Data Contract
+    description: Data Contract for Example Jaffle Shop PROCESS Orders Data provided
+      by dbt/ created by dbt build.
+    dataContractId: urn:datacontract:project:jaffle-shop:dbt:process-model:orders
+    autoApprove: false
+    containsPii: false
+    type: snowflake
+    server:
+      account: MARS-TEST_EASTUS2
+      database: datagovernance_mvp
+      schema: jaffle_shop
+  - id: urn:datacontract:project:jaffle-shop:dbt:stage-model:customers-snowflake
+    name: Jaffle Shop STAGE Customers Data Contract
+    description: Data Contract for Example Jaffle Shop STAGE Customers Data provided
+      by dbt/ created by dbt seed.
+    dataContractId: urn:datacontract:project:jaffle-shop:dbt:stage-model:customers
+    autoApprove: false
+    containsPii: false
+    type: snowflake
+    server:
+      account: MARS-TEST_EASTUS2
+      database: datagovernance_mvp
+      schema: jaffle_shop
+  - id: urn:datacontract:project:jaffle-shop:dbt:stage-model:locations-snowflake
+    name: Jaffle Shop STAGE Locations Data Contract
+    description: Data Contract for Example Jaffle Shop STAGE Locations Data provided
+      by dbt/ created by dbt seed.
+    dataContractId: urn:datacontract:project:jaffle-shop:dbt:stage-model:locations
+    autoApprove: false
+    containsPii: false
+    type: snowflake
+    server:
+      account: MARS-TEST_EASTUS2
+      database: datagovernance_mvp
+      schema: jaffle_shop
+  - id: urn:datacontract:project:jaffle-shop:dbt:stage-model:order_items-snowflake
+    name: Jaffle Shop STAGE Order Items Data Contract
+    description: Data Contract for Example Jaffle Shop STAGE Order Items Data provided
+      by dbt/ created by dbt seed.
+    dataContractId: urn:datacontract:project:jaffle-shop:dbt:stage-model:order_items
+    autoApprove: false
+    containsPii: false
+    type: snowflake
+    server:
+      account: MARS-TEST_EASTUS2
+      database: datagovernance_mvp
+      schema: jaffle_shop
+  - id: urn:datacontract:project:jaffle-shop:dbt:stage-model:orders-snowflake
+    name: Jaffle Shop STAGE Orders Data Contract
+    description: Data Contract for Example Jaffle Shop STAGE Orders Data provided
+      by dbt/ created by dbt seed.
+    dataContractId: urn:datacontract:project:jaffle-shop:dbt:stage-model:orders
+    autoApprove: false
+    containsPii: false
+    type: snowflake
+    server:
+      account: MARS-TEST_EASTUS2
+      database: datagovernance_mvp
+      schema: jaffle_shop
+  - id: urn:datacontract:project:jaffle-shop:dbt:stage-model:products-snowflake
+    name: Jaffle Shop STAGE Products Data Contract
+    description: Data Contract for Example Jaffle Shop STAGE Products Data provided
+      by dbt/ created by dbt seed.
+    dataContractId: urn:datacontract:project:jaffle-shop:dbt:stage-model:products
+    autoApprove: false
+    containsPii: false
+    type: snowflake
+    server:
+      account: MARS-TEST_EASTUS2
+      database: datagovernance_mvp
+      schema: jaffle_shop
+  - id: urn:datacontract:project:jaffle-shop:dbt:stage-model:suppliers-snowflake
+    name: Jaffle Shop STAGE Suppliers Data Contract
+    description: Data Contract for Example Jaffle Shop STAGE Suppliers Data provided
+      by dbt/ created by dbt seed.
+    dataContractId: urn:datacontract:project:jaffle-shop:dbt:stage-model:suppliers
+    autoApprove: false
+    containsPii: false
+    type: snowflake
+    server:
+      account: MARS-TEST_EASTUS2
+      database: datagovernance_mvp
+      schema: jaffle_shop
+tags:
+  - POC
+  - PROCESS
+links:
+  documentation: $gh_repo/README.md
+  catalog: https://catalog.example.com/search/search-queries/
+  repository: $gh_repo

@@ -1,0 +1,14 @@
+id: 5989d620-beec-720b-0305-ec0f7b0efdad
+info:
+  purpose: Producer Initiated Usage Agreement with dbt
+  description: Usage agreement for $producerPortName with $contractId
+  startDate: '2025-03-01'
+provider:
+  dataProductId: urn:dataproduct:project:jaffle-shop:dbt:jaffle-shop-raw
+  outputPortId: urn:datacontract:project:jaffle-shop:dbt-seed:raw-model:stores-snowflake
+  teamId: enabling-team
+consumer:
+  dataProductId: urn:dataproduct:project:jaffle-shop:dbt:jaffle-shop-transformations
+  teamId: enabling-team
+tags:
+  - POC
