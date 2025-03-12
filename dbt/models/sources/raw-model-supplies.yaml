@@ -10,29 +10,29 @@ sources:
         description: Jaffle Shop Supplies Data
         columns:
           - name: id
-            data_type: '{{ dbt.type_string() }}'
+            data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
             description: Unique identifier for supplies.
             char_size: 250
           - name: name
             data_tests:
               - not_null
-            data_type: '{{ dbt.type_string() }}'
+            data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
             description: Supply name.
             char_size: 250
           - name: cost
             data_tests:
               - not_null
-            data_type: '{{ dbt.type_numeric() }}'
+            data_type: '{{"NUMBER" if target.type == "snowflake" else "INT"}}'
             description: Supply item cost.
           - name: perishable
             data_tests:
               - not_null
-            data_type: '{{ dbt.type_boolean() }}'
+            data_type: '{{"BOOLEAN" if target.type == "snowflake" else "BOOLEAN"}}'
             description: Indication for perishable status.
           - name: sku
             data_tests:
               - not_null
-            data_type: '{{ dbt.type_string() }}'
+            data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
             description: Product sku name.
             char_size: 250
     schema: '{{target.schema}}_bronze'

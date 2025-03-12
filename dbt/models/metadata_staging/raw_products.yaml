@@ -11,30 +11,30 @@ models:
     description: Jaffle Shop Products Data
     columns:
       - name: sku
-        data_type: '{{ dbt.type_string() }}'
+        data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
         description: Item sku name.
         constraints:
           - type: not_null
           - type: unique
         char_size: 250
       - name: name
-        data_type: '{{ dbt.type_string() }}'
+        data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
         description: Product name.
         constraints:
           - type: not_null
         char_size: 250
       - name: type
-        data_type: '{{ dbt.type_string() }}'
+        data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
         description: Type of product.
         constraints:
           - type: not_null
         char_size: 250
       - name: price
-        data_type: '{{ dbt.type_numeric() }}'
+        data_type: '{{"NUMBER" if target.type == "snowflake" else "INT"}}'
         description: Product price.
         constraints:
           - type: not_null
       - name: description
-        data_type: '{{ dbt.type_string() }}'
+        data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
         description: Product description.
         char_size: 250

@@ -10,7 +10,7 @@ sources:
         description: Jaffle Shop Item Data
         columns:
           - name: id
-            data_type: '{{ dbt.type_string() }}'
+            data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
             description: Unique identifier for each item.
             char_size: 250
           - name: order_id
@@ -20,7 +20,7 @@ sources:
                   to: source("urn:datacontract:project:jaffle-shop:dbt-seed:raw-model:items",
                     "raw_orders")
                   field: id
-            data_type: '{{ dbt.type_string() }}'
+            data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
             description: Item order identifier.
             char_size: 250
           - name: sku
@@ -29,7 +29,7 @@ sources:
                   to: source("urn:datacontract:project:jaffle-shop:dbt-seed:raw-model:items",
                     "raw_products")
                   field: sku
-            data_type: '{{ dbt.type_string() }}'
+            data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
             description: Item sku name.
             char_size: 250
     schema: '{{target.schema}}_bronze'

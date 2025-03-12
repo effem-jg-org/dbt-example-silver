@@ -16,11 +16,11 @@ models:
               to: source("urn:datacontract:project:jaffle-shop:dbt-seed:raw-model:customers",
                 "raw_orders")
               field: customer
-        data_type: '{{ dbt.type_string() }}'
+        data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
         description: Unique identifier for each customer.
         char_size: 250
       - name: name
-        data_type: '{{ dbt.type_string() }}'
+        data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
         description: Customer name.
         constraints:
           - type: not_null
