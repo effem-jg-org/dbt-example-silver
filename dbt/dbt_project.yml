@@ -1,6 +1,6 @@
 config-version: 2
 
-name: "jaffle_shop_transform"
+name: "jaffle_shop_silver"
 version: "3.0.0"
 require-dbt-version: ">=1.5.0"
 
@@ -25,18 +25,18 @@ vars:
   "dbt_date:time_zone": "America/Los_Angeles"
 
 models:
-  jaffle_shop_transform:
+  jaffle_shop_silver:
     metadata_staging:
-      +schema: "raw"
+      +schema: "bronze"
     sources:
-      +schema: "raw"
+      +schema: "bronze"
     staging:
       +materialized: view
-      +schema: "transform"
+      +schema: "silver"
     marts:
       +materialized: table
-      +schema: "transform"
+      +schema: "silver"
 
 data_tests:
-  jaffle_shop:
+  jaffle_shop_silver:
     +store_failures: false
