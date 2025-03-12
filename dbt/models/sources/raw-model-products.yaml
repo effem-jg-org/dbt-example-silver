@@ -13,28 +13,28 @@ sources:
             data_tests:
               - not_null
               - unique
-            data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
+            data_type: '{{ dbt.type_string() }}'
             description: Item sku name.
             char_size: 250
           - name: name
             data_tests:
               - not_null
-            data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
+            data_type: '{{ dbt.type_string() }}'
             description: Product name.
             char_size: 250
           - name: type
             data_tests:
               - not_null
-            data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
+            data_type: '{{ dbt.type_string() }}'
             description: Type of product.
             char_size: 250
           - name: price
             data_tests:
               - not_null
-            data_type: '{{"NUMBER" if target.type == "snowflake" else "INT"}}'
+            data_type: '{{ dbt.type_numeric() }}'
             description: Product price.
           - name: description
-            data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
+            data_type: '{{ dbt.type_string() }}'
             description: Product description.
             char_size: 250
-    schema: '{{target.schema}}_raw'
+    schema: '{{target.schema}}_bronze'

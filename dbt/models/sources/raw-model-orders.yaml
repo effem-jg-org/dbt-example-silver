@@ -10,13 +10,13 @@ sources:
         description: Jaffle Shop Orders Data
         columns:
           - name: id
-            data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
+            data_type: '{{ dbt.type_string() }}'
             description: Unique identifier for each order.
             char_size: 250
           - name: customer
             data_tests:
               - not_null
-            data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
+            data_type: '{{ dbt.type_string() }}'
             description: Order customer identifier.
             char_size: 250
           - name: ordered_at
@@ -27,16 +27,16 @@ sources:
           - name: store_id
             data_tests:
               - not_null
-            data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
+            data_type: '{{ dbt.type_string() }}'
             description: Jaffle store identifier.
             char_size: 250
           - name: subtotal
-            data_type: '{{"NUMBER" if target.type == "snowflake" else "INT"}}'
+            data_type: '{{ dbt.type_numeric() }}'
             description: Cost of Jaffle order.
           - name: tax_paid
-            data_type: '{{"NUMBER" if target.type == "snowflake" else "INT"}}'
+            data_type: '{{ dbt.type_numeric() }}'
             description: Tax on order.
           - name: order_total
-            data_type: '{{"NUMBER" if target.type == "snowflake" else "INT"}}'
+            data_type: '{{ dbt.type_numeric() }}'
             description: Total cost of order.
-    schema: '{{target.schema}}_raw'
+    schema: '{{target.schema}}_bronze'

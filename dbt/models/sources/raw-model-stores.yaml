@@ -15,13 +15,13 @@ sources:
                   to: source("urn:datacontract:project:jaffle-shop:dbt-seed:raw-model:stores",
                     "raw_orders")
                   field: store_id
-            data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
+            data_type: '{{ dbt.type_string() }}'
             description: Unique identifier for supplies.
             char_size: 250
           - name: name
             data_tests:
               - not_null
-            data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
+            data_type: '{{ dbt.type_string() }}'
             description: Supply name.
             char_size: 250
           - name: opened_at
@@ -32,6 +32,6 @@ sources:
           - name: tax_rate
             data_tests:
               - not_null
-            data_type: '{{"FLOAT" if target.type == "snowflake" else "FLOAT"}}'
+            data_type: '{{ dbt.type_float() }}'
             description: City tax rate.
-    schema: '{{target.schema}}_raw'
+    schema: '{{target.schema}}_bronze'
