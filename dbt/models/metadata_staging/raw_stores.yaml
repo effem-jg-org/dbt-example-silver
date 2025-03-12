@@ -31,7 +31,7 @@ models:
         constraints:
           - type: not_null
       - name: tax_rate
-        data_type: '{{"FLOAT" if target.type == "snowflake" else "FLOAT"}}'
+        data_type: '{{"FLOAT" if target.type == "snowflake" else "DOUBLE"}}'
         description: City tax rate.
         constraints:
           - type: not_null

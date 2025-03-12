@@ -21,7 +21,7 @@ models:
           - type: not_null
         char_size: 250
       - name: cost
-        data_type: '{{"NUMBER" if target.type == "snowflake" else "INT"}}'
+        data_type: '{{"NUMBER" if target.type == "snowflake" else "BIGINT"}}'
         description: Supply item cost.
         constraints:
           - type: not_null

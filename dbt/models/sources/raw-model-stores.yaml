@@ -32,6 +32,6 @@ sources:
           - name: tax_rate
             data_tests:
               - not_null
-            data_type: '{{"FLOAT" if target.type == "snowflake" else "FLOAT"}}'
+            data_type: '{{"FLOAT" if target.type == "snowflake" else "DOUBLE"}}'
             description: City tax rate.
     schema: '{{target.schema}}_bronze'

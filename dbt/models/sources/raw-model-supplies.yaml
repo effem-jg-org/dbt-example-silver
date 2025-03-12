@@ -22,7 +22,7 @@ sources:
           - name: cost
             data_tests:
               - not_null
-            data_type: '{{"NUMBER" if target.type == "snowflake" else "INT"}}'
+            data_type: '{{"NUMBER" if target.type == "snowflake" else "BIGINT"}}'
             description: Supply item cost.
           - name: perishable
             data_tests:

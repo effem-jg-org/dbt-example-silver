@@ -31,12 +31,12 @@ sources:
             description: Jaffle store identifier.
             char_size: 250
           - name: subtotal
-            data_type: '{{"NUMBER" if target.type == "snowflake" else "INT"}}'
+            data_type: '{{"NUMBER" if target.type == "snowflake" else "BIGINT"}}'
             description: Cost of Jaffle order.
           - name: tax_paid
-            data_type: '{{"NUMBER" if target.type == "snowflake" else "INT"}}'
+            data_type: '{{"NUMBER" if target.type == "snowflake" else "BIGINT"}}'
             description: Tax on order.
           - name: order_total
-            data_type: '{{"NUMBER" if target.type == "snowflake" else "INT"}}'
+            data_type: '{{"NUMBER" if target.type == "snowflake" else "BIGINT"}}'
             description: Total cost of order.
     schema: '{{target.schema}}_bronze'

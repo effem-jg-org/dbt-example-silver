@@ -30,7 +30,7 @@ models:
           - type: not_null
         char_size: 250
       - name: price
-        data_type: '{{"NUMBER" if target.type == "snowflake" else "INT"}}'
+        data_type: '{{"NUMBER" if target.type == "snowflake" else "BIGINT"}}'
         description: Product price.
         constraints:
           - type: not_null

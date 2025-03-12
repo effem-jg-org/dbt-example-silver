@@ -31,7 +31,7 @@ sources:
           - name: price
             data_tests:
               - not_null
-            data_type: '{{"NUMBER" if target.type == "snowflake" else "INT"}}'
+            data_type: '{{"NUMBER" if target.type == "snowflake" else "BIGINT"}}'
             description: Product price.
           - name: description
             data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
