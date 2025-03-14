@@ -8,6 +8,27 @@ models:
     columns:
       - name: supply_uuid
         description: The unique key of our supplies per cost.
+        data_type: VARCHAR(250)
         data_tests:
           - not_null
           - unique
+      - name: supply_id
+        description: The unique key for each supply.
+        data_type: VARCHAR(250)
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('raw_supplies')
+              field: supply_id
+      - name: product_id
+        description: The unique key for each product.
+        data_type: VARCHAR(250)
+      - name: supply_name
+        description: The name of the supply.
+        data_type: VARCHAR(250)
+      - name: supply_cost
+        description: The cost of the supply.
+        data_type: DOUBLE
+      - name: is_perishable_supply
+        description: A boolean indicating if the supply is perishable.
+        data_type: BOOLEAN

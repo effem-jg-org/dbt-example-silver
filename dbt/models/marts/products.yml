@@ -1,3 +1,30 @@
+version: 2
+models:
+  - name: products
+    description: List of saleable products, one row per product.
+    columns:
+      - name: sku
+        description: The unique key of the product mart.
+        data_type: VARCHAR(250)
+        data_tests:
+          - not_null
+          - unique
+      - name: name
+        description: Product full name.
+        data_type: VARCHAR(250)
+      - name: type
+        description: Type of saleable product.
+        data_type: VARCHAR(250)
+        data_tests:
+          - accepted_values:
+              values: ["jaffle", "beverage"]
+      - name: price
+        description: The Retail Sales Price of the Product.
+        data_type: DOUBLE
+      - name: description
+        description: The product description.
+        data_type: VARCHAR(250)
+
 semantic_models:
   #The name of the semantic model.
   - name: products

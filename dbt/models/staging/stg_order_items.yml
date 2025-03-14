@@ -5,13 +5,18 @@ models:
     columns:
       - name: order_item_id
         description: The unique key for each order item.
+        data_type: VARCHAR(250)
         data_tests:
           - not_null
           - unique
       - name: order_id
         description: The corresponding order each order item belongs to
+        data_type: VARCHAR(250)
         data_tests:
           - not_null
           - relationships:
               to: ref('raw_items')
               field: order_id
+      - name: product_id
+        description: The unique key for each order product.
+        data_type: VARCHAR(250)

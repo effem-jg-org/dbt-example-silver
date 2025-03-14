@@ -1,3 +1,31 @@
+version: 2
+models:
+  - name: supplies
+    description: List of supplies to product the product, one row per supply.
+    columns:
+      - name: id
+        description: The unique key of the supplies mart.
+        data_type: VARCHAR(250)
+        data_tests:
+          - not_null
+          - unique
+      - name: name
+        description: Supply full name.
+        data_type: VARCHAR(250)
+      - name: cost
+        description: The cost of the supply.
+        data_type: BIGINT
+      - name: perishable
+        descritpion: A boolean indicating if the supply is perishable.
+        data_type: BOOLEAN
+      - name: sku
+        description: The unique key of the product mart.
+        data_type: VARCHAR(250)
+        data_tests:
+          - relationships:
+              to: ref('products')
+              field: sku
+
 semantic_models:
   #The name of the semantic model.
   - name: supplies
