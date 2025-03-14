@@ -19,7 +19,7 @@ models:
           - not_null
           - relationships:
               to: ref('raw_supplies')
-              field: supply_id
+              field: id
       - name: product_id
         description: The unique key for each product.
         data_type: VARCHAR(250)

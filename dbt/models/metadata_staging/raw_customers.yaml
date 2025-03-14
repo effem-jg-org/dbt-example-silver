@@ -13,7 +13,7 @@ models:
       - name: id
         data_tests:
           - relationships:
-              to: source("urn:datacontract:project:jaffle-shop:dbt-seed:raw-model:customers",
+              to: source("urn:datacontract:project:jaffle-shop:dbt-seed:raw-model:orders",
                 "raw_orders")
               field: customer
         data_type: VARCHAR(250)

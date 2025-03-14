@@ -5,6 +5,7 @@ sources:
       owner: enabling-team
     description: Data Contract for Example Jaffle Shop RAW Items Data provided by
       dbt/ created by dbt seed.
+    schema: jaffle_shop_bronze
     tables:
       - name: raw_items
         description: Jaffle Shop Item Data
@@ -15,21 +16,26 @@ sources:
             char_size: 250
           - name: order_id
             data_tests:
-              - not_null
+              - not_null:
+                  config:
+                    alias: raw_items_order_id_not_null
               - relationships:
-                  to: source("urn:datacontract:project:jaffle-shop:dbt-seed:raw-model:items",
+                  to: source("urn:datacontract:project:jaffle-shop:dbt-seed:raw-model:orders",
                     "raw_orders")
                   field: id
+                  config:
+                    alias: raw_items_id_to_raw_orders
             data_type: VARCHAR(250)
             description: Item order identifier.
             char_size: 250
           - name: sku
             data_tests:
               - relationships:
-                  to: source("urn:datacontract:project:jaffle-shop:dbt-seed:raw-model:items",
+                  to: source("urn:datacontract:project:jaffle-shop:dbt-seed:raw-model:products",
                     "raw_products")
                   field: sku
+                  config:
+                    alias: raw_items_sku_to_raw_products
             data_type: VARCHAR(250)
             description: Item sku name.
             char_size: 250
-    schema: '{{target.schema}}_bronze'

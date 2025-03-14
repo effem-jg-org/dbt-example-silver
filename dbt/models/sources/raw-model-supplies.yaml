@@ -5,6 +5,7 @@ sources:
       owner: enabling-team
     description: Data Contract for Example Jaffle Shop RAW Supplies Data provided
       by dbt/ created by dbt seed.
+    schema: jaffle_shop_bronze
     tables:
       - name: raw_supplies
         description: Jaffle Shop Supplies Data
@@ -15,24 +16,31 @@ sources:
             char_size: 250
           - name: name
             data_tests:
-              - not_null
+              - not_null:
+                  config:
+                    alias: raw_supplies_name_not_null
             data_type: VARCHAR(250)
             description: Supply name.
             char_size: 250
           - name: cost
             data_tests:
-              - not_null
+              - not_null:
+                  config:
+                    alias: raw_supplies_cost_not_null
             data_type: BIGINT
             description: Supply item cost.
           - name: perishable
             data_tests:
-              - not_null
+              - not_null:
+                  config:
+                    alias: raw_supplies_perishable_not_null
             data_type: BOOLEAN
             description: Indication for perishable status.
           - name: sku
             data_tests:
-              - not_null
+              - not_null:
+                  config:
+                    alias: raw_supplies_sku_not_null
             data_type: VARCHAR(250)
             description: Product sku name.
             char_size: 250
-    schema: '{{target.schema}}_bronze'

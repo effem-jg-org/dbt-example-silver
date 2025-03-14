@@ -17,7 +17,7 @@ models:
       - name: order_id
         data_tests:
           - relationships:
-              to: source("urn:datacontract:project:jaffle-shop:dbt-seed:raw-model:items",
+              to: source("urn:datacontract:project:jaffle-shop:dbt-seed:raw-model:orders",
                 "raw_orders")
               field: id
         data_type: VARCHAR(250)
@@ -28,7 +28,7 @@ models:
       - name: sku
         data_tests:
           - relationships:
-              to: source("urn:datacontract:project:jaffle-shop:dbt-seed:raw-model:items",
+              to: source("urn:datacontract:project:jaffle-shop:dbt-seed:raw-model:products",
                 "raw_products")
               field: sku
         data_type: VARCHAR(250)

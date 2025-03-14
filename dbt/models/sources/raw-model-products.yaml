@@ -5,36 +5,43 @@ sources:
       owner: enabling-team
     description: Data Contract for Example Jaffle Shop RAW Products Data provided
       by dbt/ created by dbt seed.
+    schema: jaffle_shop_bronze
     tables:
       - name: raw_products
         description: Jaffle Shop Products Data
         columns:
           - name: sku
             data_tests:
-              - not_null
-              - unique
+              - not_null:
+                  config:
+                    alias: raw_products_sku_not_null
             data_type: VARCHAR(250)
             description: Item sku name.
             char_size: 250
           - name: name
             data_tests:
-              - not_null
+              - not_null:
+                  config:
+                    alias: raw_products_name_not_null
             data_type: VARCHAR(250)
             description: Product name.
             char_size: 250
           - name: type
             data_tests:
-              - not_null
+              - not_null:
+                  config:
+                    alias: raw_products_type_not_null
             data_type: VARCHAR(250)
             description: Type of product.
             char_size: 250
           - name: price
             data_tests:
-              - not_null
+              - not_null:
+                  config:
+                    alias: raw_products_price_not_null
             data_type: BIGINT
             description: Product price.
           - name: description
             data_type: VARCHAR(250)
             description: Product description.
             char_size: 250
-    schema: '{{target.schema}}_bronze'

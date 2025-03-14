@@ -5,6 +5,7 @@ sources:
       owner: enabling-team
     description: Data Contract for Example Jaffle Shop RAW Orders Data provided by
       dbt/ created by dbt seed.
+    schema: jaffle_shop_bronze
     tables:
       - name: raw_orders
         description: Jaffle Shop Orders Data
@@ -15,18 +16,24 @@ sources:
             char_size: 250
           - name: customer
             data_tests:
-              - not_null
+              - not_null:
+                  config:
+                    alias: raw_orders_customer_not_null
             data_type: VARCHAR(250)
             description: Order customer identifier.
             char_size: 250
           - name: ordered_at
             data_tests:
-              - not_null
+              - not_null:
+                  config:
+                    alias: raw_orders_ordered_at_not_null
             data_type: TIMESTAMP_NTZ
             description: Order timestamp.
           - name: store_id
             data_tests:
-              - not_null
+              - not_null:
+                  config:
+                    alias: raw_orders_store_id_not_null
             data_type: VARCHAR(250)
             description: Jaffle store identifier.
             char_size: 250
@@ -39,4 +46,3 @@ sources:
           - name: order_total
             data_type: BIGINT
             description: Total cost of order.
-    schema: '{{target.schema}}_bronze'

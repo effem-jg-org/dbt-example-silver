@@ -5,6 +5,7 @@ sources:
       owner: enabling-team
     description: Data Contract for Example Jaffle Shop RAW Customers Data provided
       by dbt/ created by dbt seed.
+    schema: jaffle_shop_bronze
     tables:
       - name: raw_customers
         description: Jaffle Shop Customer Data
@@ -12,16 +13,19 @@ sources:
           - name: id
             data_tests:
               - relationships:
-                  to: source("urn:datacontract:project:jaffle-shop:dbt-seed:raw-model:customers",
+                  to: source("urn:datacontract:project:jaffle-shop:dbt-seed:raw-model:orders",
                     "raw_orders")
                   field: customer
+                  config:
+                    alias: raw_customers_id_to_raw_orders_customer
             data_type: VARCHAR(250)
             description: Unique identifier for each customer.
             char_size: 250
           - name: name
             data_tests:
-              - not_null
+              - not_null:
+                  config:
+                    alias: raw_customers_name_not_null
             data_type: VARCHAR(250)
             description: Customer name.
             char_size: 250
-    schema: '{{target.schema}}_bronze'

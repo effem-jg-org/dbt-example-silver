@@ -1,14 +1,13 @@
 version: 2
 models:
   - name: supplies
-    description: List of supplies to product the product, one row per supply.
+    description: List of supplies to product the product, one row per supply id and sku.
     columns:
       - name: id
         description: The unique key of the supplies mart.
         data_type: VARCHAR(250)
         data_tests:
           - not_null
-          - unique
       - name: name
         description: Supply full name.
         data_type: VARCHAR(250)
