@@ -23,11 +23,20 @@ models:
       one row per location.
     fields:
       location_id:
-        type: ''
+        type: VARCHAR(250)
         required: true
         primaryKey: true
         unique: true
-        description: The unique key for each location.
+        description: The unique key of the locations mart.
+      location_name:
+        type: VARCHAR(250)
+        description: Location full name.
+      tax_rate:
+        type: DOUBLE
+        description: Applicable sales tax rate based on location.
+      opened_date:
+        type: TIMESTAMP
+        description: The timestamp when a location first opened.
     tags: []
 servicelevels:
   availability:

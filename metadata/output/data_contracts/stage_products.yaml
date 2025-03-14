@@ -23,11 +23,29 @@ models:
       cleaning and transformation applied, one row per product.
     fields:
       product_id:
-        type: ''
+        type: VARCHAR(250)
         required: true
         primaryKey: true
         unique: true
         description: The unique key for each product.
+      product_name:
+        type: VARCHAR(250)
+        description: The name of the product.
+      product_type:
+        type: VARCHAR(250)
+        description: The type of the product.
+      product_description:
+        type: VARCHAR(250)
+        description: The description of the product.
+      product_price:
+        type: DOUBLE
+        description: The price of the product.
+      is_food_item:
+        type: BOOLEAN
+        description: A boolean indicating if the product is a food item.
+      is_drink_item:
+        type: BOOLEAN
+        description: A boolean indicating if the product is a drink item.
     tags: []
 servicelevels:
   availability:

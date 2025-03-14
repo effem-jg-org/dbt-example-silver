@@ -23,16 +23,19 @@ models:
       per item.
     fields:
       order_item_id:
-        type: ''
+        type: VARCHAR(250)
         required: true
         primaryKey: true
         unique: true
         description: The unique key for each order item.
       order_id:
-        type: ''
+        type: VARCHAR(250)
         required: true
         references: raw_items.order_id
         description: The corresponding order each order item belongs to
+      product_id:
+        type: VARCHAR(250)
+        description: The unique key for each order product.
     tags: []
 servicelevels:
   availability:

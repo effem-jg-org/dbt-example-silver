@@ -23,11 +23,14 @@ models:
       row per customer.
     fields:
       customer_id:
-        type: ''
+        type: VARCHAR(250)
         required: true
         primaryKey: true
         unique: true
         description: The unique key for each customer.
+      customer_name:
+        type: VARCHAR(250)
+        description: The full name of the customer.
     tags: []
 servicelevels:
   availability:

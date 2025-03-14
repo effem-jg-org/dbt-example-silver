@@ -23,37 +23,37 @@ models:
       customer. One row per customer.
     fields:
       customer_id:
-        type: ''
+        type: VARCHAR(250)
         required: true
         primaryKey: true
         unique: true
         description: The unique key of the orders mart.
       customer_name:
-        type: ''
+        type: VARCHAR(250)
         description: Customers' full name.
       count_lifetime_orders:
-        type: ''
+        type: BIGINT
         description: Total number of orders a customer has ever placed.
       first_ordered_at:
-        type: ''
+        type: TIMESTAMP
         description: The timestamp when a customer placed their first order.
       last_ordered_at:
-        type: ''
+        type: TIMESTAMP
         description: The timestamp of a customer's most recent order.
       lifetime_spend_pretax:
-        type: ''
+        type: DOUBLE
         description: The sum of all the pre-tax subtotals of every order a customer
           has placed.
       lifetime_tax_paid:
-        type: ''
+        type: DOUBLE
         description: The sum of all the tax portion of every order a customer has
           placed.
       lifetime_spend:
-        type: ''
+        type: DOUBLE
         description: The sum of all the order totals (including tax) that a customer
           has ever placed.
       customer_type:
-        type: ''
+        type: VARCHAR(250)
         description: Options are 'new' or 'returning', indicating if a customer has
           ordered more than once or has only placed their first order to date.
     tags: []

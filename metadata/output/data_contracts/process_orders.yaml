@@ -24,30 +24,65 @@ models:
       per order.
     fields:
       order_id:
-        type: ''
+        type: VARCHAR(250)
         required: true
         primaryKey: true
         unique: true
         description: The unique key of the orders mart.
+      location_id:
+        type: VARCHAR(250)
+        references: stg_locations.location_id
+        description: The foreign key relating to the location where the order was
+          placed.
       customer_id:
-        type: ''
+        type: VARCHAR(250)
         references: stg_customers.customer_id
         description: The foreign key relating to the customer who placed the order.
+      subtotal_cents:
+        type: BIGINT
+        description: The subtotal of the order in cents.
+      tax_paid_cents:
+        type: BIGINT
+        description: The tax portion of the order in cents.
+      order_total_cents:
+        type: BIGINT
+        description: The total amount of the order in cents including tax.
+      subtotal:
+        type: DOUBLE
+        description: The subtotal of the order in USD.
+      tax_paid:
+        type: DOUBLE
+        description: The tax portion of the order in USD.
       order_total:
-        type: ''
+        type: DOUBLE
         description: The total amount of the order in USD including tax.
       ordered_at:
-        type: ''
+        type: TIMESTAMP
         description: The timestamp the order was placed at.
       order_cost:
-        type: ''
+        type: DOUBLE
         description: The sum of supply expenses to fulfill the order.
+      order_items_subtotal:
+        type: DOUBLE
+        description: The sum of the order item subtotals.
+      count_food_items:
+        type: BIGINT
+        description: The number of food items in the order.
+      count_drink_items:
+        type: BIGINT
+        description: The number of drink items in the order.
+      count_order_items:
+        type: BIGINT
+        description: The total number of items in the order.
       is_food_order:
-        type: ''
+        type: BOOLEAN
         description: A boolean indicating if this order included any food items.
       is_drink_order:
-        type: ''
+        type: BOOLEAN
         description: A boolean indicating if this order included any drink items.
+      custoemr_order_number:
+        type: INT
+        description: The order number for the customer.
     tags: []
 servicelevels:
   availability:
