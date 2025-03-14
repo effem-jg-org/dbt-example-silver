@@ -39,4 +39,4 @@ models:
 
 data_tests:
   jaffle_shop_silver:
-    +store_failures: false
+    +store_failures: true

@@ -12,15 +12,19 @@ sources:
           - name: id
             data_tests:
               - relationships:
-                  to: source("urn:datacontract:project:jaffle-shop:dbt-seed:raw-model:customers",
+                  to: source("urn:datacontract:project:jaffle-shop:dbt-seed:raw-model:orders",
                     "raw_orders")
                   field: customer
+                  config:
+                    alias: raw_customers_customer
             data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
             description: Unique identifier for each customer.
             char_size: 250
           - name: name
             data_tests:
-              - not_null
+              - not_null:
+                  config:
+                    alias: raw_customers_name_not_null
             data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
             description: Customer name.
             char_size: 250
