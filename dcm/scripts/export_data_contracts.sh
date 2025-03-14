@@ -29,20 +29,19 @@ for d in ${INPUT_DATA_CONTRACTS[@]}; do
     --output dbt/models/sources/${contract_name}.yaml
 
   # Anti-Agnostic Pattern to hardcode/ convert Data Types to conform with
-  # desired Warehouse against `dbt build`. Jinja macros are available,
-  # but not yet supported inside YAML Contracts.
-  # example: {{ dbt.type_timestamp() }}
+  # desired Warehouse against `dbt build`. data_type aliasing is enabled in
+  # dbt by default, but logical types aren't widespread enough. Issue raised
+  # with dbt.
   #
   # TODO: 
-  # - [dbt] Support Jinja Macros in YAML Contracts
-  # - [datacontract-cli] dbt-source export to utilize Jinja Macros
-  yq -r -i --yaml-roundtrip '.sources[0] += {"schema": "{{target.schema}}_raw"}' \
+  # - [dbt] Revert clean-up once aliasing has been updated
+  yq -r -i --yaml-roundtrip '.sources[0] += {"schema": "{{target.schema}}_bronze"}' \
     dbt/models/sources/${contract_name}.yaml
   yq -r -i --yaml-roundtrip \
     --arg timestamp '{{"TIMESTAMP_NTZ" if target.type == "snowflake" else "TIMESTAMP"}}' \
-    --arg number '{{"NUMBER" if target.type == "snowflake" else "INT"}}' \
+    --arg number '{{"NUMBER" if target.type == "snowflake" else "BIGINT"}}' \
     --arg int '{{"INT" if target.type == "snowflake" else "INT"}}' \
-    --arg float '{{"FLOAT" if target.type == "snowflake" else "FLOAT"}}' \
+    --arg float '{{"FLOAT" if target.type == "snowflake" else "DOUBLE"}}' \
     --arg bigint '{{"BIGINT" if target.type == "snowflake" else "INT"}}' \
     --arg string '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}' \
     --arg boolean '{{"BOOLEAN" if target.type == "snowflake" else "BOOLEAN"}}' \
