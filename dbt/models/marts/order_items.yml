@@ -3,14 +3,40 @@ models:
   - name: order_items
     columns:
       - name: order_item_id
+        description: The unique key for each order item.
+        data_type: VARCHAR(250)
         data_tests:
           - not_null
           - unique
       - name: order_id
+        description: The unique key for each order.
+        data_type: VARCHAR(250)
         data_tests:
           - relationships:
               to: ref('orders')
               field: order_id
+      - name: product_id
+        description: The unique key for each order product.
+        data_type: VARCHAR(250)
+      - name: ordered_at
+        description: The time at which the order was placed.
+        data_type: TIMESTAMP
+      - name: product_name
+        description: The name of product ordered.
+        data_type: VARCHAR(250)
+      - name: product_price
+        description: The price associated with product ordered.
+        data_type: DOUBLE
+      - name: is_food_item
+        description: Boolean indicating if the order item is a food item.
+        data_type: BOOLEAN
+      - name: is_drink_item
+        description: Boolean indicating if the order item is a drink item.
+        data_type: BOOLEAN
+      - name: supply_cost
+        description: The supply cost for each order item.
+        data_type: DOUBLE
+      
 
 unit_tests:
   - name: test_supply_costs_sum_correctly

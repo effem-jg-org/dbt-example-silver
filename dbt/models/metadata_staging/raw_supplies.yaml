@@ -11,27 +11,27 @@ models:
     description: Jaffle Shop Supplies Data
     columns:
       - name: id
-        data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
+        data_type: VARCHAR(250)
         description: Unique identifier for supplies.
         char_size: 250
       - name: name
-        data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
+        data_type: VARCHAR(250)
         description: Supply name.
         constraints:
           - type: not_null
         char_size: 250
       - name: cost
-        data_type: '{{"NUMBER" if target.type == "snowflake" else "BIGINT"}}'
+        data_type: BIGINT
         description: Supply item cost.
         constraints:
           - type: not_null
       - name: perishable
-        data_type: '{{"BOOLEAN" if target.type == "snowflake" else "BOOLEAN"}}'
+        data_type: BOOLEAN
         description: Indication for perishable status.
         constraints:
           - type: not_null
       - name: sku
-        data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
+        data_type: VARCHAR(250)
         description: Product sku name.
         constraints:
           - type: not_null

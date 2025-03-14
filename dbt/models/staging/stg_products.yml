@@ -5,6 +5,28 @@ models:
     columns:
       - name: product_id
         description: The unique key for each product.
+        data_type: VARCHAR(250)
         data_tests:
           - not_null
           - unique
+      - name: product_name
+        description: The name of the product.
+        data_type: VARCHAR(250)
+      - name: product_type
+        description: The type of the product.
+        data_type: VARCHAR(250)
+        data_tests:
+          - accepted_values:
+              values: ["jaffle", "beverage"]
+      - name: product_description
+        description: The description of the product.
+        data_type: VARCHAR(250)
+      - name: product_price
+        description: The price of the product.
+        data_type: DOUBLE
+      - name: is_food_item
+        description: A boolean indicating if the product is a food item.
+        data_type: BOOLEAN
+      - name: is_drink_item
+        description: A boolean indicating if the product is a drink item.
+        data_type: BOOLEAN

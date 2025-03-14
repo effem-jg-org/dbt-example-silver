@@ -16,11 +16,11 @@ models:
               to: source("urn:datacontract:project:jaffle-shop:dbt-seed:raw-model:stores",
                 "raw_orders")
               field: store_id
-        data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
+        data_type: VARCHAR(250)
         description: Unique identifier for supplies.
         char_size: 250
       - name: name
-        data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
+        data_type: VARCHAR(250)
         description: Supply name.
         constraints:
           - type: not_null
@@ -31,7 +31,7 @@ models:
         constraints:
           - type: not_null
       - name: tax_rate
-        data_type: '{{"FLOAT" if target.type == "snowflake" else "DOUBLE"}}'
+        data_type: DOUBLE
         description: City tax rate.
         constraints:
           - type: not_null

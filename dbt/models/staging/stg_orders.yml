@@ -8,6 +8,42 @@ models:
     columns:
       - name: order_id
         description: The unique key for each order.
+        data_type: VARCHAR(250)
         data_tests:
           - not_null
           - unique
+      - name: location_id
+        description: The unique key for each location.
+        data_type: VARCHAR(250)
+        data_tests:
+          - relationships:
+              to: ref('stg_locations')
+              field: location_id
+      - name: customer_id
+        description: The unique key for each customer.
+        data_type: VARCHAR(250)
+        data_tests:
+          - relationships:
+              to: ref('stg_customers')
+              field: customer_id
+      - name: subtotal_cents
+        description: The subtotal of the order in cents.
+        data_type: BIGINT
+      - name: tax_paid_cents
+        description: The tax portion of the order in cents.
+        data_type: BIGINT
+      - name: order_total_cents
+        description: The total amount of the order in cents including tax.
+        data_type: BIGINT
+      - name: subtotal
+        description: The subtotal of the order in dollars.
+        data_type: DOUBLE
+      - name: tax_paid
+        description: The tax portion of the order in dollars.
+        data_type: DOUBLE
+      - name: order_total
+        description: The total amount of the order in dollars including tax.
+        data_type: DOUBLE
+      - name: ordered_at
+        description: The timestamp the order was placed at.
+        data_type: TIMESTAMP

@@ -10,32 +10,26 @@ sources:
         description: Jaffle Shop Item Data
         columns:
           - name: id
-            data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
+            data_type: VARCHAR(250)
             description: Unique identifier for each item.
             char_size: 250
           - name: order_id
             data_tests:
-              - not_null:
-                  config:
-                    alias: raw_items_order_id_not_null
+              - not_null
               - relationships:
-                  to: source("urn:datacontract:project:jaffle-shop:dbt-seed:raw-model:orders",
+                  to: source("urn:datacontract:project:jaffle-shop:dbt-seed:raw-model:items",
                     "raw_orders")
                   field: id
-                  config:
-                    alias: raw_items_order_id
-            data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
+            data_type: VARCHAR(250)
             description: Item order identifier.
             char_size: 250
           - name: sku
             data_tests:
               - relationships:
-                  to: source("urn:datacontract:project:jaffle-shop:dbt-seed:raw-model:products",
+                  to: source("urn:datacontract:project:jaffle-shop:dbt-seed:raw-model:items",
                     "raw_products")
                   field: sku
-                  config:
-                    alias: raw_items_sku
-            data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
+            data_type: VARCHAR(250)
             description: Item sku name.
             char_size: 250
     schema: '{{target.schema}}_bronze'

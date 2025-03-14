@@ -9,25 +9,69 @@ models:
     columns:
       - name: order_id
         description: The unique key of the orders mart.
+        data_type: VARCHAR(250)
         data_tests:
           - not_null
           - unique
+      - name: location_id
+        description: The foreign key relating to the location where the order was placed.
+        data_type: VARCHAR(250)
+        data_tests:
+          - relationships:
+              to: ref('stg_locations')
+              field: location_id
       - name: customer_id
         description: The foreign key relating to the customer who placed the order.
+        data_type: VARCHAR(250)
         data_tests:
           - relationships:
               to: ref('stg_customers')
               field: customer_id
+      - name: subtotal_cents
+        description: The subtotal of the order in cents.
+        data_type: BIGINT
+      - name: tax_paid_cents
+        description: The tax portion of the order in cents.
+        data_type: BIGINT
+      - name: order_total_cents
+        description: The total amount of the order in cents including tax.
+        data_type: BIGINT
+      - name: subtotal
+        description: The subtotal of the order in USD.
+        data_type: DOUBLE
+      - name: tax_paid
+        description: The tax portion of the order in USD.
+        data_type: DOUBLE
       - name: order_total
         description: The total amount of the order in USD including tax.
+        data_type: DOUBLE
       - name: ordered_at
         description: The timestamp the order was placed at.
+        data_type: TIMESTAMP
       - name: order_cost
         description: The sum of supply expenses to fulfill the order.
+        data_type: DOUBLE
+      - name: order_items_subtotal
+        description: The sum of the order item subtotals.
+        data_type: DOUBLE
+      - name: count_food_items
+        description: The number of food items in the order.
+        data_type: BIGINT
+      - name: count_drink_items
+        description: The number of drink items in the order.
+        data_type: BIGINT
+      - name: count_order_items
+        description: The total number of items in the order.
+        data_type: BIGINT
       - name: is_food_order
         description: A boolean indicating if this order included any food items.
+        data_type: BOOLEAN
       - name: is_drink_order
         description: A boolean indicating if this order included any drink items.
+        data_type: BOOLEAN
+      - name: custoemr_order_number
+        description: The order number for the customer.
+        data_type: INT
 
 unit_tests:
   - name: test_order_items_compute_to_bools_correctly
