@@ -1,8 +1,8 @@
-id: b482d768-c7ec-75ba-ac90-0d707521f0d7
+id: 31e8cf00-e18c-d5f6-80c0-ffa7624d7f2d
 info:
   purpose: Producer Initiated Usage Agreement with dbt
   description: Usage agreement for $producerPortName with $contractId
-  startDate: '2025-03-01'
+  startDate: '2025-03-14'
 provider:
   dataProductId: urn:dataproduct:project:jaffle-shop:dbt:jaffle-shop-raw
   outputPortId: urn:datacontract:project:jaffle-shop:dbt-seed:raw-model:products-databricks

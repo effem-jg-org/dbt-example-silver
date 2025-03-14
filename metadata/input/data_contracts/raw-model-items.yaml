@@ -2,7 +2,7 @@ dataContractSpecification: 1.1.0
 id: urn:datacontract:project:jaffle-shop:dbt-seed:raw-model:items
 info:
   title: Jaffle Shop RAW Items Data Contract
-  version: 2025.02.28
+  version: 2025.03.07
   description: Data Contract for Example Jaffle Shop RAW Items Data provided by dbt/
     created by dbt seed.
   owner: enabling-team
@@ -71,13 +71,8 @@ servicelevels:
     interval: weekly
     cron: 0 0 1 * 0
 servers:
-  dna_snowflake_dev:
-    type: snowflake
-    account: MARS-TEST_EASTUS2
-    database: datagovernance_mvp
-    schema: jaffle_shop_raw
   dna_databricks_dev:
     type: databricks
     host: adb-4057509338801929.9.azuredatabricks.net
-    catalog: DATAGOVERNANCE_MVP
-    schema: JAFFLE_SHOP_RAW
+    catalog: datagovernance_mvp
+    schema: jaffle_shop_bronze

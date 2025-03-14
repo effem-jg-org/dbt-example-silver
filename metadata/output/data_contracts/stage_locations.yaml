@@ -2,7 +2,7 @@ dataContractSpecification: 1.1.0
 id: urn:datacontract:project:jaffle-shop:dbt:stage-model:locations
 info:
   title: Jaffle Shop STAGE Locations Data Contract
-  version: 2025.03.01
+  version: 2025.03.14
   description: Data Contract for Example Jaffle Shop STAGE Locations Data provided
     by dbt/ created by dbt seed.
   owner: enabling-team
@@ -63,9 +63,4 @@ servers:
     type: databricks
     host: adb-4057509338801929.9.azuredatabricks.net
     catalog: datagovernance_mvp
-    schema: jaffle_shop
-  dna_snowflake_dev:
-    type: snowflake
-    account: MARS-TEST_EASTUS2
-    database: datagovernance_mvp
     schema: jaffle_shop
