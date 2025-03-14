@@ -38,13 +38,13 @@ for d in ${INPUT_DATA_CONTRACTS[@]}; do
   yq -r -i --yaml-roundtrip '.sources[0] += {"schema": "{{target.schema}}_bronze"}' \
     dbt/models/sources/${contract_name}.yaml
   yq -r -i --yaml-roundtrip \
-    --arg timestamp '{{"TIMESTAMP_NTZ" if target.type == "snowflake" else "TIMESTAMP"}}' \
-    --arg number '{{"NUMBER" if target.type == "snowflake" else "BIGINT"}}' \
-    --arg int '{{"INT" if target.type == "snowflake" else "INT"}}' \
-    --arg float '{{"FLOAT" if target.type == "snowflake" else "DOUBLE"}}' \
-    --arg bigint '{{"BIGINT" if target.type == "snowflake" else "INT"}}' \
-    --arg string '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}' \
-    --arg boolean '{{"BOOLEAN" if target.type == "snowflake" else "BOOLEAN"}}' \
+    --arg timestamp 'TIMESTAMP' \
+    --arg number 'BIGINT' \
+    --arg int 'INT' \
+    --arg float 'DOUBLE' \
+    --arg bigint 'INT' \
+    --arg string 'VARCHAR(250)' \
+    --arg boolean 'BOOLEAN' \
     'walk( 
       if type == "object" and has("data_type") then
         if .data_type == "TIMESTAMP_TZ" then .data_type = $timestamp
@@ -71,13 +71,13 @@ for d in ${INPUT_DATA_CONTRACTS[@]}; do
     --output dbt/models/metadata_staging/${model_name}.yaml
   
   yq -r -i --yaml-roundtrip \
-    --arg timestamp '{{"TIMESTAMP_NTZ" if target.type == "snowflake" else "TIMESTAMP"}}' \
-    --arg number '{{"NUMBER" if target.type == "snowflake" else "BIGINT"}}' \
-    --arg int '{{"INT" if target.type == "snowflake" else "INT"}}' \
-    --arg float '{{"FLOAT" if target.type == "snowflake" else "DOUBLE"}}' \
-    --arg bigint '{{"BIGINT" if target.type == "snowflake" else "INT"}}' \
-    --arg string '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}' \
-    --arg boolean '{{"BOOLEAN" if target.type == "snowflake" else "BOOLEAN"}}' \
+    --arg timestamp 'TIMESTAMP' \
+    --arg number 'BIGINT' \
+    --arg int 'INT' \
+    --arg float 'DOUBLE' \
+    --arg bigint 'INT' \
+    --arg string 'VARCHAR(250)' \
+    --arg boolean 'BOOLEAN' \
     'walk( 
       if type == "object" and has("data_type") then
         if .data_type == "TIMESTAMP_TZ" then .data_type = $timestamp

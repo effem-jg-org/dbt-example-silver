@@ -10,39 +10,33 @@ sources:
         description: Jaffle Shop Orders Data
         columns:
           - name: id
-            data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
+            data_type: VARCHAR(250)
             description: Unique identifier for each order.
             char_size: 250
           - name: customer
             data_tests:
-              - not_null:
-                  config:
-                    alias: raw_orders_customer_not_null
-            data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
+              - not_null
+            data_type: VARCHAR(250)
             description: Order customer identifier.
             char_size: 250
           - name: ordered_at
             data_tests:
-              - not_null:
-                  config:
-                    alias: raw_orders_ordered_at_not_null
+              - not_null
             data_type: TIMESTAMP_NTZ
             description: Order timestamp.
           - name: store_id
             data_tests:
-              - not_null:
-                  config:
-                    alias: raw_orders_store_id_not_null
-            data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
+              - not_null
+            data_type: VARCHAR(250)
             description: Jaffle store identifier.
             char_size: 250
           - name: subtotal
-            data_type: '{{"NUMBER" if target.type == "snowflake" else "BIGINT"}}'
+            data_type: BIGINT
             description: Cost of Jaffle order.
           - name: tax_paid
-            data_type: '{{"NUMBER" if target.type == "snowflake" else "BIGINT"}}'
+            data_type: BIGINT
             description: Tax on order.
           - name: order_total
-            data_type: '{{"NUMBER" if target.type == "snowflake" else "BIGINT"}}'
+            data_type: BIGINT
             description: Total cost of order.
     schema: '{{target.schema}}_bronze'

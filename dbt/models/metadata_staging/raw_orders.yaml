@@ -11,11 +11,11 @@ models:
     description: Jaffle Shop Orders Data
     columns:
       - name: id
-        data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
+        data_type: VARCHAR(250)
         description: Unique identifier for each order.
         char_size: 250
       - name: customer
-        data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
+        data_type: VARCHAR(250)
         description: Order customer identifier.
         constraints:
           - type: not_null
@@ -26,17 +26,17 @@ models:
         constraints:
           - type: not_null
       - name: store_id
-        data_type: '{{"STRING" if target.type == "snowflake" else "VARCHAR(250)"}}'
+        data_type: VARCHAR(250)
         description: Jaffle store identifier.
         constraints:
           - type: not_null
         char_size: 250
       - name: subtotal
-        data_type: '{{"NUMBER" if target.type == "snowflake" else "BIGINT"}}'
+        data_type: BIGINT
         description: Cost of Jaffle order.
       - name: tax_paid
-        data_type: '{{"NUMBER" if target.type == "snowflake" else "BIGINT"}}'
+        data_type: BIGINT
         description: Tax on order.
       - name: order_total
-        data_type: '{{"NUMBER" if target.type == "snowflake" else "BIGINT"}}'
+        data_type: BIGINT
         description: Total cost of order.
